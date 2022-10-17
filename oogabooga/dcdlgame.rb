@@ -6,19 +6,20 @@ class Dont_crash_do_land < Gosu::Window
         super(1024,862)
         self.caption = "dont_crash_do_land 0.1"
         @Lander = Gosu::Image.new("../media/images/whitebox.png")
+        # position: pixels; velocity: pixels per second;
+        # angle: degrees per second ;acceleration: pixels per second^2
         @x = self.width/2
         @y = self.height/2
-        @x_vel = 0.1
+        @x_vel = 0.1        # initial velocity
         @y_vel = 0
-        @angle = 0
-        @booster = 3
-        @gravity = 1
+        @angle = 0          # right is positive; left is negative
+        @boosterAcc = 3
+        @gravityAcc = 1    
     end
 
     def rotate_left
         @angle -= (360/100)
     end
-
 
     def rotate_right
         @angle += (360/100)
@@ -36,7 +37,6 @@ class Dont_crash_do_land < Gosu::Window
         rotate_left if Gosu.button_down? Gosu::KB_LEFT
         rotate_right if Gosu.button_down? Gosu::KB_RIGHT
         accelerate if Gosu.button_down? Gosu::KB_UP
-
 
         if @x >= 1024 - @Lander::width
             @x = @Lander::width
@@ -58,7 +58,6 @@ class Dont_crash_do_land < Gosu::Window
 
             end
         end
-
 
         @y_vel += @gravity
         @x += @x_vel / 60
