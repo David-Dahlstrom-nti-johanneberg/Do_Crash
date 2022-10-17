@@ -16,12 +16,12 @@ class Dont_crash_do_land < Gosu::Window
     end
 
     def rotate_left
-        @angle -= ((2*Math::PI)/100)
+        @angle -= (360/100)
     end
 
 
     def rotate_right
-        @angle += (2*Math::PI/100)
+        @angle += (360/100)
     end
 
     def accelerate
@@ -45,7 +45,7 @@ class Dont_crash_do_land < Gosu::Window
         end
 
         if @y >= 862 - @Lander::height
-            @aliveangle = ( @angle <= (Math::PI/4) || @angle >= -(Math::PI/4) )
+            @aliveangle = ( @angle <= (360/4) || @angle >= -(360/4) )
             p @aliveangle
             if  @aliveangle && @y_vel < 10 && @x_vel < 10
                 puts "mortaza will kiss ur feet as reward"
@@ -55,6 +55,7 @@ class Dont_crash_do_land < Gosu::Window
                 puts "u suck"
                 @y_vel = 0
                 @x_vel = 0
+
             end
         end
 
@@ -66,7 +67,7 @@ class Dont_crash_do_land < Gosu::Window
     end
 
     def draw
-        @Lander.draw_rot(@x,@y,0,Gosu::radians_to_degrees(@angle),0.5,0.5,1,1)
+        @Lander.draw_rot(@x,@y,0,@angle,0.5,0.5,1,1)
     end
 
 end
