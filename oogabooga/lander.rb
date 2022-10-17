@@ -4,13 +4,17 @@ class Lander
 
     attr_reader :x, :y, :x_vel, :y_vel, :angle, :width, :height
 
-    def initialize(x,y)
-        @x = x
-        @y = y
+    def initialize(x,y,window_width,window_height)
+        @window_width = window_width
+        @window_height = window_height
         @image = Gosu::Image.new("../media/images/whitebox.png")
         @width = @image.width
         @height = @image.height
-        @x_vel = 0.1        # initial velocity
+        # position: pixels; velocity: pixels per second;
+        # angle: degrees per second ;acceleration: pixels per second^2
+        @x = x
+        @y = y
+        @x_vel = 0          # initial velocity
         @y_vel = 0
         @angle = 0          # right is positive; left is negative
         @boosterAcc = 2
@@ -39,6 +43,12 @@ class Lander
         @y_vel += @gravityAcc
         @x += @x_vel / 60
         @y += @y_vel / 60
+
+        if @x >= @window_width - @width
+            @x = @width
+        elsif @x <= @width
+            @x = (@window_width - @width)
+        end
     end
 
     def draw
