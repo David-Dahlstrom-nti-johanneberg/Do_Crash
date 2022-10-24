@@ -1,5 +1,6 @@
 require 'gosu'
 require './lander'
+require './hud'
 
 class Dont_crash_do_land < Gosu::Window
    
@@ -7,6 +8,7 @@ class Dont_crash_do_land < Gosu::Window
         super(1024,862)
         self.caption = "dont_crash_do_land 0.1"
         @lander = Lander.new((self.width/2), (self.height/2), self.width, self.height)
+        @hud = Hud.new(self)
     end
 
     def update
@@ -25,6 +27,7 @@ class Dont_crash_do_land < Gosu::Window
 
     def draw
         @lander.draw
+        @hud.draw(@lander.x_vel, @lander.y_vel)
     end
 end
 
