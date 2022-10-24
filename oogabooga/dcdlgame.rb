@@ -15,7 +15,7 @@ class Dont_crash_do_land < Gosu::Window
 
         if @lander.y >= self.height - @lander.height
             @aliveangle = ( @lander.angle <= (360/4) || @lander.angle >= -(360/4) )
-            if  @aliveangle && @lander.y_vel < 10 && @lander.x_vel < 10
+            if  @aliveangle && @lander.y_vel < 20 && @lander.x_vel < 10
                 puts "mortaza will kiss ur feet as reward"
             else
                 puts "u suck"

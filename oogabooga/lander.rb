@@ -7,7 +7,7 @@ class Lander
     def initialize(x,y,window_width,window_height)
         @window_width = window_width
         @window_height = window_height
-        @image = Gosu::Image.new("../media/images/whitebox.png")
+        @image = Gosu::Image.new("../media/images/sprite_fake_png.jpg")
         @width = @image.width
         @height = @image.height
         # position: pixels; velocity: pixels per second;
@@ -52,7 +52,7 @@ class Lander
     end
 
     def draw
-        @image.draw_rot(@x,@y,0,@angle,0.5,0.5,1,1)
+        @image.draw_rot(@x,@y,0,@angle,0.5,0.5,0.2,0.2)
     end
 
 end
