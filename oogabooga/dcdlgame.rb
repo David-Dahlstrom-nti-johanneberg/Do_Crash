@@ -18,7 +18,7 @@ class Dont_crash_do_land < Gosu::Window
         if @lander.y >= self.height - @lander.height
             @aliveangle = ( @lander.angle <= (360/4) || @lander.angle >= -(360/4) )
             if  @aliveangle && @lander.y_vel < 20 && @lander.x_vel < 10
-                puts "mortaza will kiss ur feet as reward"
+                puts "mortaza says you good"
             else
                 puts "u suck"
             end
@@ -27,7 +27,7 @@ class Dont_crash_do_land < Gosu::Window
 
     def draw
         @lander.draw
-        @hud.draw(@lander.x_vel, @lander.y_vel)
+        @hud.draw(@lander.x_vel, @lander.y_vel,@lander.angle,(self.height - @lander.y))
     end
 end
 

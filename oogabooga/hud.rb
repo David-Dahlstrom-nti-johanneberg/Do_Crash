@@ -6,8 +6,10 @@ class Hud
         @color = Gosu::Color::WHITE
     end
 
-    def draw(x_vel,y_vel)
-        @font.draw("X axis velocity:#{x_vel}", 20, 0, 1, 1.0, 1.0,@color)
-        @font.draw("Y axis velocity:#{y_vel}", 20, 25, 1, 1.0, 1.0,@color)
+    def draw(x_vel,y_vel,angle,alt)
+        @font.draw_text("X axis velocity:#{(x_vel).round(2)}",20,5,1,1.0,1.0,@color,:default)
+        @font.draw_text("Y axis velocity:#{(y_vel).round(2)}",20,30,1,1.0,1.0,@color,:default)
+        @font.draw_text("Rotation:#{(angle).round(2)}°",20,55,1,1.0,1.0,@color,:default)
+        @font.draw_text("Altitude:#{(alt).round(2)}",20,80,1,1.0,1.0,@color,:default)
     end
 end
