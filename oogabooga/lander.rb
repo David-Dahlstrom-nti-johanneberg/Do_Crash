@@ -10,23 +10,25 @@ class Lander
         @image = Gosu::Image.new("../media/images/sprite_fake_png.jpg")
         @width = @image.width
         @height = @image.height
-        # position: pixels; velocity: pixels per second;
-        # angle: degrees per second ;acceleration: pixels per second^2
+        # position: pixels; velocity: pixels per second; angle: degrees;
+        # rotation_speed: degrees per second ;acceleration: pixels per second^2
         @x = x
         @y = y
         @x_vel = 0          # initial velocity
         @y_vel = 0
         @angle = 0          # right is positive; left is negative
-        @boosterAcc = 2
-        @gravityAcc = 1  
+        # adjustment attributes
+        @boosterAcc = 1.3
+        @gravityAcc = 0.5
+        @rotation_speed = 1.2
     end
 
     def rotate_left
-        @angle -= (360/100)
+        @angle -= @rotation_speed
     end
 
     def rotate_right
-        @angle += (360/100)
+        @angle += @rotation_speed
     end
 
     def accelerate
@@ -51,8 +53,21 @@ class Lander
         end
     end
 
+    private def deg_to_rad(degrees)
+        return (Math::PI * degrees / 180)
+    end
+
+    def lowest_point()
+        pi = Math::PI
+        p Math.sin(Math::PI/4)
+        return ( Math::sin( pi/4 ) * @width * Math::sqrt(2) ) / ( 2 * Math::sin( (pi / 2) + deg_to_rad(@angle) ) )
+    end
+
     def draw
-        @image.draw_rot(@x,@y,0,@angle,0.5,0.5,0.2,0.2)
+        blue = Gosu::Color.argb(0xff_0000ff)
+        line_y = @y + lowest_point()
+        Gosu::draw_line(0, line_y,blue ,@window_width, line_y,blue)
+        @image.draw_rot(@x, @y, 0, @angle, 0.5, 0.5, 0.2, 0.2)
     end
 
 end
