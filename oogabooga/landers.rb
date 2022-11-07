@@ -7,7 +7,6 @@ class Landers
     def initialize(x, y, window_width, window_height)
         @window_width = window_width
         @window_height = window_height
-        
         # position: pixels; velocity: pixels per second; angle: degrees;
         # rotation_speed: degrees per second ;acceleration: pixels per second^2
         @x = x
