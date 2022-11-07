@@ -7,7 +7,7 @@ class Lander
     def initialize(x,y,window_width,window_height)
         @window_width = window_width
         @window_height = window_height
-        @image = Gosu::Image.new("../media/images/sprite_fake_png.jpg")
+        @image = Gosu::Image.new("../media/images/Death_star.png")
         @width = @image.width
         @height = @image.height
         # position: pixels; velocity: pixels per second; angle: degrees;
@@ -59,7 +59,6 @@ class Lander
 
     def lowest_point()
         pi = Math::PI
-        p Math.sin(Math::PI/4)
         return ( Math::sin( pi/4 ) * @width * Math::sqrt(2) ) / ( 2 * Math::sin( (pi / 2) + deg_to_rad(@angle) ) )
     end
 
