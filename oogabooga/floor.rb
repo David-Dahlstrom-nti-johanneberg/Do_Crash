@@ -10,8 +10,8 @@ class Floor
     @color_red = Gosu::Color.argb(0xff_ff0000)  # (0xAA_RRGGBB)
     @window_width = window_width
     @window_height = window_height
-    @ls_count = 0           
-    @ls = []  # 2D array [[start, end, height, difficulty], ... [...]]
+    @ls_count = 0   # will be used by methods later           
+    @ls = []  # 2D array [[x-start, x-end, y-height, difficulty-level], ... [...]]
     # ls generation creates divisions in window width
     # and margin tells how far from these divisions the ls have to be
     @margin = 50

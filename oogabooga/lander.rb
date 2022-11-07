@@ -10,6 +10,7 @@ class Lander
         @image = Gosu::Image.new("../media/images/sprite_fake_png.jpg")
         @width = @image.width
         @height = @image.height
+        @image_scale = 0.2
         # position: pixels; velocity: pixels per second; angle: degrees;
         # rotation_speed: degrees per second ;acceleration: pixels per second^2
         @x = x
@@ -59,15 +60,16 @@ class Lander
 
     def lowest_point()
         pi = Math::PI
-        p Math.sin(Math::PI/4)
-        return ( Math::sin( pi/4 ) * @width * Math::sqrt(2) ) / ( 2 * Math::sin( (pi / 2) + deg_to_rad(@angle) ) )
+        degrees = ((@angle % 90) - 45).abs * -1 + 45
+        return ( Math::sin( pi/4 ) * @width * Math::sqrt(2) * 0.2 ) / ( 2 * Math::sin( (pi / 2) + deg_to_rad( degrees ) ) )
     end
 
     def draw
-        blue = Gosu::Color.argb(0xff_0000ff)
-        line_y = @y + lowest_point()
-        Gosu::draw_line(0, line_y,blue ,@window_width, line_y,blue)
-        @image.draw_rot(@x, @y, 0, @angle, 0.5, 0.5, 0.2, 0.2)
+        # blue = Gosu::Color.argb(0xff_0000ff)
+        # line_y = @y + lowest_point()
+        # Gosu::draw_line(0, line_y,blue ,@window_width, line_y,blue)
+
+        @image.draw_rot(@x, @y, 0, @angle, 0.5, 0.5, @image_scale, @image_scale)
     end
 
 end
