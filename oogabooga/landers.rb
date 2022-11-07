@@ -1,6 +1,6 @@
 require 'gosu'
 
-class Lander
+class Landers
 
     attr_reader :x, :y, :x_vel, :y_vel, :angle, :width, :height
 
