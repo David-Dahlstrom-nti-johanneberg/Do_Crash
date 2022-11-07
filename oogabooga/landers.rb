@@ -7,10 +7,6 @@ class Landers
     def initialize(x,y,window_width,window_height)
         @window_width = window_width
         @window_height = window_height
-        @image = Gosu::Image.new("../media/images/Death_star.png")
-        @width = @image.width
-        @height = @image.height
-        @image_scale = 0.2
         # position: pixels; velocity: pixels per second; angle: degrees;
         # rotation_speed: degrees per second ;acceleration: pixels per second^2
         @x = x
@@ -19,9 +15,7 @@ class Landers
         @y_vel = 0
         @angle = 0          # right is positive; left is negative
         # adjustment attributes
-        @boosterAcc = 1.3
         @gravityAcc = 0.5
-        @rotation_speed = 1.2
     end
 
     private def rotate_left

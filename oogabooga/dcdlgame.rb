@@ -1,5 +1,5 @@
 require 'gosu'
-require './lander'
+require './dsLander'
 require './hud'
 require './floor'
 
@@ -11,7 +11,7 @@ class Dont_crash_do_land < Gosu::Window
         super(window_width, window_height)
         self.caption = "dont_crash_do_land 0.1"
         # object initialization
-        @lander = Lander.new((self.width/2), (self.height/2), self.width, self.height)
+        @lander = DSLander.new((self.width/2), (self.height/2), self.width, self.height)
         @hud = Hud.new(self)
         @floor = Floor.new(window_width, window_height)
     end
