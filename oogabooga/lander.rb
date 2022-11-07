@@ -7,7 +7,7 @@ class Lander
     def initialize(x,y,window_width,window_height)
         @window_width = window_width
         @window_height = window_height
-        @image = Gosu::Image.new("../media/images/sprite_fake_png.jpg")
+        @image = Gosu::Image.new("../media/images/Death_star.png")
         @width = @image.width
         @height = @image.height
         @image_scale = 0.2
@@ -24,15 +24,15 @@ class Lander
         @rotation_speed = 1.2
     end
 
-    def rotate_left
+    private def rotate_left
         @angle -= @rotation_speed
     end
 
-    def rotate_right
+    private def rotate_right
         @angle += @rotation_speed
     end
 
-    def accelerate
+    private def accelerate
         angle_radians = Gosu::degrees_to_radians(@angle)
         @x_vel += (Math.sin(angle_radians) * @boosterAcc)
         @y_vel -= (Math.cos(angle_radians) * @boosterAcc)
