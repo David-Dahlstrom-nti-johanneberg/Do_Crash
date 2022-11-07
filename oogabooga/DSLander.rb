@@ -10,7 +10,7 @@ class DSLander < Landers
         @height = @image.height
         @image_scale = 0.2
         @rotation_speed = 2
-        @boosterAcc = 0.8
+        @boosterAcc = 0.7
     end
 
     def lowest_point
