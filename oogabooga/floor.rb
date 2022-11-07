@@ -12,6 +12,7 @@ class Floor
     @window_height = window_height
     @ls_count = 0   # will be used by methods later           
     @ls = []  # 2D array [[x-start, x-end, y-height, difficulty-level], ... [...]]
+    @terrain_positions = [] # 2D array [[x-start, x-end, y-height], ... [...]]
     # ls generation creates divisions in window width
     # and margin tells how far from these divisions the ls have to be
     @margin = 50
