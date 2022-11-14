@@ -21,18 +21,22 @@ class Dont_crash_do_land < Gosu::Window
         @floor = Floor.new(@window_width, @window_height)
     end
 
-    def update
-        @lander.update
-
-        # collision
+    def collision
         if @lander.y >= self.height - @lander.height
             @alive_angle = Math::abs(@lander.angle) < (360/4)
-            
-            if  @alive_angle && @lander.y_vel < 20 && @lander.x_vel < 10             
-                #@hud.draw_Win
+            if  @aliveangle && @lander.y_vel < 30 && @lander.x_vel < 10               
+                return 1
             else
-                #@hud.draw_Lose
+                return 2
             end
+        else
+            return 0
+        end
+    end
+
+    def update
+        if collision == 0
+            @lander.update
         end
     end
 
@@ -40,9 +44,16 @@ class Dont_crash_do_land < Gosu::Window
         @floor.draw
         @lander.draw
         @hud.draw(@lander.x_vel, @lander.y_vel,@lander.angle,(self.height - @lander.y))
+
         color = Gosu::Color.argb(0xff_0000ff)
         y = @lander.y + @lander.lowest_point()
         Gosu::draw_line(0, y, color, @window_width, y, color)
+        
+        if collision == 1
+            @hud.draw_Win
+        elsif collision == 2
+            @hud.draw_Lose
+        end
     end
 end
 

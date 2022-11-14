@@ -3,7 +3,7 @@ require './landers'
 
 class DSLander < Landers
 
-    attr_reader :width, :height
+    #attr_reader :width, :height
 
     def initialize(x,y,window_width,window_height)
         super(x,y,window_width,window_height)
