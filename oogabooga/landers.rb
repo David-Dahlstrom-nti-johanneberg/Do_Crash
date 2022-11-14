@@ -2,7 +2,7 @@ require 'gosu'
 
 class Landers
 
-    attr_reader :x, :y, :x_vel, :y_vel, :angle, :width, :height
+    attr_reader :x, :y, :x_vel, :y_vel, :angle
 
     def initialize(x, y, window_width, window_height)
         @window_width = window_width

@@ -112,7 +112,7 @@ class Floor
     end
   end
 
-  private def self.draw_terrain()
+  private def draw_terrain()
     # ls starts from right to left landing spot
     # @ls format: 2D array [[start, end, height, difficulty], ... [...]]
     for i in 0..@ls.length
