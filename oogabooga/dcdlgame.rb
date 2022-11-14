@@ -18,7 +18,7 @@ class Dont_crash_do_land < Gosu::Window
         else
             @lander = DSLander.new((self.width/2), (self.height/2), self.width, self.height)
         end
-        @hud = Hud.new(self)
+        @hud = Hud.new(self, self.width/2, self.heigth/2)
         @floor = Floor.new(window_width, window_height)
     end
 
@@ -28,10 +28,10 @@ class Dont_crash_do_land < Gosu::Window
         # collision
         if @lander.y >= self.height - @lander.height
             @aliveangle = ( @lander.angle <= (360/4) || @lander.angle >= -(360/4) )
-            if  @aliveangle && @lander.y_vel < 20 && @lander.x_vel < 10
-                puts "mortaza says you good"
+            if  @aliveangle && @lander.y_vel < 20 && @lander.x_vel < 10               
+                @hud.draw_Win
             else
-                puts "u suck"
+                @hud.draw_Lose
             end
         end
     end

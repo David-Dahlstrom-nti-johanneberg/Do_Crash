@@ -2,6 +2,9 @@ require 'gosu'
 require './landers'
 
 class LunarLander < Landers
+
+    attr_reader :width, :height
+
     def initialize(x, y, window_width, window_height)
         super(x, y, window_width,window_height)
         @image = Gosu::Image.new("../media/images/sprite_fake_png.jpg")
