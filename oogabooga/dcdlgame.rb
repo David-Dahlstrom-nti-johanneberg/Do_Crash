@@ -23,7 +23,7 @@ class Dont_crash_do_land < Gosu::Window
 
     def collision
         if @lander.y >= self.height - @lander.height
-            @alive_angle = Math::abs(@lander.angle) < (360/4)
+            @alive_angle = @lander.angle.abs < (360/4)
             if  @aliveangle && @lander.y_vel < 30 && @lander.x_vel < 10               
                 return 1
             else
