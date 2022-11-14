@@ -17,4 +17,5 @@ class LunarLander < Landers
         degrees = ((@angle % 90) - 45).abs * -1 + 45
         return ( Math::sin( pi/4 ) * @width * Math::sqrt(2) * 0.2 ) / ( 2 * Math::sin( (pi / 2) + Gosu::degrees_to_radians(degrees) ) )
     end
+
 end

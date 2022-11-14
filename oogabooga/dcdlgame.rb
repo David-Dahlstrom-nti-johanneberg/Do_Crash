@@ -8,9 +8,9 @@ require './floor'
 class Dont_crash_do_land < Gosu::Window
    
     def initialize
-        window_width = 1500
-        window_height = 700
-        super(window_width, window_height)
+        @window_width = 1500
+        @window_height = 700
+        super(@window_width, @window_height)
         self.caption = "dont_crash_do_land 0.1"
         # object initialization
         if (1 == 1)
@@ -19,7 +19,7 @@ class Dont_crash_do_land < Gosu::Window
             @lander = DSLander.new((self.width/2), (self.height/2), self.width, self.height)
         end
         @hud = Hud.new(self)
-        @floor = Floor.new(window_width, window_height)
+        @floor = Floor.new(@window_width, @window_height)
     end
 
     def update
@@ -27,8 +27,8 @@ class Dont_crash_do_land < Gosu::Window
 
         # collision
         if @lander.y >= self.height - @lander.height
-            @aliveangle = ( @lander.angle <= (360/4) || @lander.angle >= -(360/4) )
-            if  @aliveangle && @lander.y_vel < 20 && @lander.x_vel < 10
+            @alive_angle = Math::abs(@lander.angle) < (360/4)
+            if  @alive_angle && @lander.y_vel < 20 && @lander.x_vel < 10
                 puts "mortaza says you good"
             else
                 puts "u suck"
@@ -40,6 +40,9 @@ class Dont_crash_do_land < Gosu::Window
         @floor.draw
         @lander.draw
         @hud.draw(@lander.x_vel, @lander.y_vel,@lander.angle,(self.height - @lander.y))
+        color = Gosu::Color.argb(0xff_0000ff)
+        y = @lander.y + @lander.lowest_point()
+        Gosu::draw_line(0, y, color, @window_width, y, color)
     end
 end
 
