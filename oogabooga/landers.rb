@@ -2,11 +2,12 @@ require 'gosu'
 
 class Landers
 
-    attr_reader :x, :y, :x_vel, :y_vel, :angle, :width, :height
+    attr_reader :x, :y, :x_vel, :y_vel, :angle, :width
 
     def initialize(x, y, window_width, window_height)
         @window_width = window_width
         @window_height = window_height
+        # x & y: right -> positive & down -> positive
         # position: pixels; velocity: pixels per second; angle: degrees;
         # rotation_speed: degrees per second ;acceleration: pixels per second^2
         @x = x
@@ -15,7 +16,7 @@ class Landers
         @y_vel = 0
         @angle = 0          # right is positive; left is negative
         # adjustment attributes
-        @gravityAcc = 0.5
+        @gravity_acc = 0.5
     end
 
     private def rotate_left
@@ -27,9 +28,9 @@ class Landers
     end
 
     private def accelerate
-        angle_radians = Gosu::degrees_to_radians(@angle)
-        @x_vel += (Math.sin(angle_radians) * @boosterAcc)
-        @y_vel -= (Math.cos(angle_radians) * @boosterAcc)
+        angle_radians = Gosu::degrees_to_radians(@angle - 90)   # - 90 to match where degrees start in unit circle
+        @x_vel += (Math.cos(angle_radians) * @booster_acc)
+        @y_vel += (Math.sin(angle_radians) * @booster_acc)
     end
 
     def update
@@ -37,7 +38,7 @@ class Landers
         rotate_right if Gosu.button_down? Gosu::KB_RIGHT
         accelerate if Gosu.button_down? Gosu::KB_UP
 
-        @y_vel += @gravityAcc
+        @y_vel += @gravity_acc
         @x += @x_vel / 60
         @y += @y_vel / 60
 

@@ -15,11 +15,11 @@ class Hud
         @font.draw_text("Altitude:#{(alt).round(2)}", 20, 80, 1, 1.0, 1.0, @color, :default)
     end
 
-    def draw_Win
+    def draw_win
         @font.draw_text("You win, mortaza is safe", @middle_x, @middle_y, 1, 1.0, 1.0, @color, :default )
     end
 
-    def draw_Lose
+    def draw_lose
         @font.draw_text("You Lose, mortaza died, big sad", @middle_x, @middle_y, 1, 1.0, 1.0, @color, :default )
     end    
 end
