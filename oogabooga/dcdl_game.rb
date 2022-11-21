@@ -6,12 +6,22 @@ require './floor'
 
 class Dont_crash_do_land < Gosu::Window
    
+
     def initialize
-        @window_width = 1500
+        @window_width = 1100
         @window_height = 700
         super(@window_width, @window_height)
         self.caption = "dont_crash_do_land 0.1"
         # object initialization
+        @angle_check = 40
+        @x_vel_check = 10
+        @y_vel_check = 30
+        @collision_points = 20 # how accurate collisions are
+      
+        reset
+    end
+
+    def reset
         if rand(1..2) == 1
             @lander = LunarLander.new((self.width/2), (self.height/2), self.width, self.height)
         else
@@ -19,15 +29,9 @@ class Dont_crash_do_land < Gosu::Window
         end
         @hud = Hud.new(self, self.width/2, self.height/2)
         @floor = Floor.new(@window_width, @window_height)
-        @angle_check = 40
-        @x_vel_check = 10
-        @y_vel_check = 30
-        @collision_points = 20 # how accurate collisions are
-        if @lander.is_a? DSLander
-            @assist_margins = 4 # how far outside of ls you can land and still win (in pixels)
-        else
-            @assist_margins = 2
-        end
+        @assist_margins = @lander.assist_margins
+        @song = Gosu::Song.new("../media/music/space.mp3")
+        @song.play(false)
     end
 
     def collision() # returns nil if no collision, true if passed collision, false otherwise
@@ -61,17 +65,25 @@ class Dont_crash_do_land < Gosu::Window
         if collision() == nil
             @lander.update
         end
+       
+    end
+
+    def button_down(id)
+        reset if id == Gosu::KB_SPACE
     end
 
     def draw
         @floor.draw
         @lander.draw
-        @hud.draw(@lander.x_vel, @lander.y_vel,@lander.angle,(self.height - @lander.y))
+        alt = @floor.y(@lander.x) - @lander.y - (@lander.height/2)
+        @hud.draw(@lander.x_vel, @lander.y_vel, @lander.angle, alt)
 
         if collision() == true
             @hud.draw_win
+            @hud.draw_new_game
         elsif collision() == false
             @hud.draw_lose
+            @hud.draw_new_game
         end
 
         # debug

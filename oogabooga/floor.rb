@@ -174,6 +174,8 @@ class Floor
 		return false
 	end
 
+	# desc:
+	# returns y of terrain (y = 0 on top of window)
 	def y(x)
 		element_in_arr = find_terrain_for_x(x)
 		if element_in_arr == nil

@@ -2,7 +2,7 @@ require 'gosu'
 
 class Landers
 
-    attr_reader :x, :y, :x_vel, :y_vel, :angle, :width
+    attr_reader :x, :y, :x_vel, :y_vel, :angle, :width, :assist_margins, :height
 
     def initialize(x, y, window_width, window_height, color)
         @color = color
