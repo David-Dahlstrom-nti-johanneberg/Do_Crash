@@ -4,8 +4,9 @@ require './landers'
 class DSLander < Landers
 
     def initialize(x, y, window_width, window_height)
-        super(x, y, window_width, window_height)
-        @image = Gosu::Image.new("../media/images/Death_star.png")
+        color = Gosu::Color.argb(0xff_ffffff)
+        super(x, y, window_width, window_height, color)
+        @image = Gosu::Image.new("../media/images/death_star.png")
         @image_scale = 0.3
         @width = @image.width * @image_scale
         @height = @image.height * @image_scale

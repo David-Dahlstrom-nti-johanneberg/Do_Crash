@@ -70,33 +70,18 @@ class Dont_crash_do_land < Gosu::Window
 
         if collision() == true
             @hud.draw_win
-            p "u won"
         elsif collision() == false
             @hud.draw_lose
-            p "u lose"
         end
 
         # debug
         color = Gosu::Color.argb(0xff_0000ff)
         if @lander.is_a? DSLander
             points = @lander.collision_points(@collision_points)
-        else
-            points = @lander.collision_points()
-        end
-        # x
-        points.each do |point|
-            Gosu::draw_line(point[0], point[1], color, point[0], @floor.y(point[0]), color)
-        end
-        
-        #x = @lander.x + @lander.lowest_point_x()
-        #Gosu::draw_line(0, y, color, @window_width, y, color)
-        #Gosu::draw_line(x, 0, color, x, @window_height, color)
-
-        #if collision() == 1
-        #    @hud.draw_Win
-        #elsif collision() == 2
-        #    @hud.draw_Lose
-        #end
+            points.each do |point|
+                Gosu::draw_line(point[0], point[1], color, point[0], @floor.y(point[0]), color)
+            end
+        end        
     end
 end
 

@@ -4,8 +4,8 @@ class Floor
 	# ls = Landing Spot
 
 	def initialize(window_width, window_height)
-		@color = Gosu::Color.argb(0xff_ffffff)    # For Gosu::draw_line() arg
-		@color_red = Gosu::Color.argb(0xff_ff0000)    # (0xAA_RRGGBB)
+		@color_terrain = Gosu::Color.argb(0xff_ffffff)    # For Gosu::draw_line() arg
+		@color_ls = Gosu::Color.argb(0xff_ff0000)    # (0xAA_RRGGBB)
 		
 		@window_width = window_width
 		@window_height = window_height
@@ -125,14 +125,14 @@ class Floor
 		# @ls format: 2D array [[start, end, height, difficulty], ... [...]]
 		@ls.each do |ls|
 			# Gosu::draw_line(x1, y1, color, x2, y2, color)
-			Gosu::draw_line(ls[0], @window_height - ls[2], @color_red, ls[1], @window_height - ls[2], @color_red)
+			Gosu::draw_line(ls[0], @window_height - ls[2], @color_ls, ls[1], @window_height - ls[2], @color_ls)
 		end
 	end
 
 	private def draw_terrain()
 		@terrain_lines.each do |x1, x2, y1, y2|
 			# Gosu::draw_line(x1, y1, color, x2, y2, color)
-			Gosu::draw_line(x1, @window_height - y1, @color, x2, @window_height - y2, @color)
+			Gosu::draw_line(x1, @window_height - y1, @color_terrain, x2, @window_height - y2, @color_terrain)
 		end
 	end
 	

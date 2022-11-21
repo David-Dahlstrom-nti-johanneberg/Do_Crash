@@ -4,7 +4,8 @@ class Landers
 
     attr_reader :x, :y, :x_vel, :y_vel, :angle, :width
 
-    def initialize(x, y, window_width, window_height)
+    def initialize(x, y, window_width, window_height, color)
+        @color = color
         @window_width = window_width
         @window_height = window_height
         # x & y: right -> positive & down -> positive
@@ -55,7 +56,8 @@ class Landers
         # Gosu::draw_line(0, line_y,blue ,@window_width, line_y,blue)
 
         # draw_rot(x, y, z, angle, center_x, center_y, factor-x, factor-y)
-        @image.draw_rot(@x, @y, 0, @angle, 0.5, 0.5, @image_scale, @image_scale)
+        # #draw_rot(x, y, z = 0, angle = 0, center_x = 0.5, center_y = 0.5, scale_x = 1, scale_y = 1, color = 0xff_ffffff
+        @image.draw_rot(@x, @y, 0, @angle, 0.5, 0.5, @image_scale, @image_scale, @color)
     end
 
 end

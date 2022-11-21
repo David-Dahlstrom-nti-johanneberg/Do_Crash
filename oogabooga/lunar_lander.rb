@@ -6,9 +6,10 @@ class LunarLander < Landers
     #attr_reader :width, :height
 
     def initialize(x, y, window_width, window_height)
-        super(x, y, window_width, window_height)
+        color = Gosu::Color.argb(0xff_ffffff)
+        super(x, y, window_width, window_height, color)
         @image = Gosu::Image.new("../media/images/sprite_fake_png.jpg")
-        @image_scale = 0.2
+        @image_scale = 0.25
         @width = @image.width * @image_scale
         @height = @image.height * @image_scale
         @rotation_speed = 1.2
@@ -18,7 +19,7 @@ class LunarLander < Landers
     def collision_points()
         points = []
         for i in 0...4
-            radians = Gosu::degrees_to_radians(@angle + 45 + 90 * i)   # "how many degrees lander is rotated clockwise"-ish
+            radians = Gosu::degrees_to_radians(@angle - 45 + 90 * i)   # "how many degrees lander is rotated clockwise"-ish
             #radians = Gosu::degrees_to_radians( ((@angle % 90) - 45).abs * -1 + 45 )   # "how many degrees lander is rotated clockwise"-ish
             x = @x + @width * Math::sqrt(2) * Math::cos(radians) / 2
             y = @y + @width * Math::sqrt(2) * Math::sin(radians) / 2
