@@ -3,7 +3,7 @@ require 'gosu'
 class Hud
     def initialize(var, middle_x, middle_y)
         @font = Gosu::Font.new(var, Gosu::default_font_name, 20)
-        @color = Gosu::Color::WHITE
+        @color = Gosu::Color::GREEN
         @middle_x = middle_x
         @middle_y = middle_y
     end
@@ -21,5 +21,9 @@ class Hud
 
     def draw_lose
         @font.draw_text("You Lose, mortaza died, big sad", @middle_x, @middle_y, 1, 1.0, 1.0, @color, :default )
-    end    
+    end  
+    
+    def draw_new_game
+        @font.draw_text("Click [SPACE] to restart", (@middle_x), (@middle_y + 25), 1, 1.0, 1.0, @color, :default )
+    end
 end
