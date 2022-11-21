@@ -13,10 +13,12 @@ class Dont_crash_do_land < Gosu::Window
         super(@window_width, @window_height)
         self.caption = "dont_crash_do_land 0.1"
         # object initialization
-        @angle_check = 40
-        @x_vel_check = 10
-        @y_vel_check = 30
+        @angle_check = 10
+        @x_vel_check = 8
+        @y_vel_check = 20
         @collision_points = 20 # how accurate collisions are
+        @song = Gosu::Song.new("../media/music/space.mp3")
+        @song.play(false)
       
         reset
     end
@@ -30,8 +32,6 @@ class Dont_crash_do_land < Gosu::Window
         @hud = Hud.new(self, self.width/2, self.height/2)
         @floor = Floor.new(@window_width, @window_height)
         @assist_margins = @lander.assist_margins
-        @song = Gosu::Song.new("../media/music/space.mp3")
-        @song.play(false)
     end
 
     def collision() # returns nil if no collision, true if passed collision, false otherwise
