@@ -29,11 +29,9 @@ class Dont_crash_do_land < Gosu::Window
         end
         @hud = Hud.new(self, self.width/2, self.height/2)
         @floor = Floor.new(@window_width, @window_height)
-        if @lander.is_a? DSLander
-            @assist_margins = 4 # how far outside of ls you can land and still win (in pixels)
-        else
-            @assist_margins = 2
-        end
+        @assist_margins = @lander.assist_margins
+        @song = Gosu::Song.new("../media/music/space.mp3")
+        @song.play(false)
     end
 
     def collision() # returns nil if no collision, true if passed collision, false otherwise
@@ -77,7 +75,8 @@ class Dont_crash_do_land < Gosu::Window
     def draw
         @floor.draw
         @lander.draw
-        @hud.draw(@lander.x_vel, @lander.y_vel,@lander.angle,(self.height - @lander.y))
+        alt = @floor.y(@lander.x) - @lander.y - (@lander.height/2)
+        @hud.draw(@lander.x_vel, @lander.y_vel, @lander.angle, alt)
 
         if collision() == true
             @hud.draw_win

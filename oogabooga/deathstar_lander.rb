@@ -11,6 +11,7 @@ class DSLander < Landers
         @height = @image.height * @image_scale
         @rotation_speed = 2
         @booster_acc = 0.7
+        @assist_margins = 4
     end
 
     def collision_points(points_amount)

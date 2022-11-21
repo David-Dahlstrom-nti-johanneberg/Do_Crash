@@ -13,6 +13,7 @@ class LunarLander < Landers
         @height = @image.height * @image_scale
         @rotation_speed = 1.2
         @booster_acc = 1.3
+        @assist_margins = 2
     end
 
     def collision_points()
