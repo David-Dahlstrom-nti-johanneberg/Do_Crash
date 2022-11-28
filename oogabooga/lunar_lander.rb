@@ -5,15 +5,14 @@ class LunarLander < Landers
 
     #attr_reader :width, :height
 
-    def initialize(x, y, window_width, window_height)
+    def initialize(start_x, start_y, window_width, window_height)
         color = Gosu::Color.argb(0xff_ffffff)
-        super(x, y, window_width, window_height, color)
-        @image = Gosu::Image.new("../media/images/sprite_fake_png.jpg")
-        @image_scale = 0.2
-        @width = @image.width * @image_scale
-        @height = @image.height * @image_scale
-        @rotation_speed = 1.2
-        @booster_acc = 1.3
+        image_scale = 0.2
+        image = Gosu::Image.new("../media/images/sprite_fake_png.jpg")
+        rotation_speed = 1.2
+        booster_acc = 1.3
+        super(start_x, start_y, image, window_width, window_height, color, image_scale, rotation_speed, booster_acc)
+    
         @assist_margins = 2
     end
 

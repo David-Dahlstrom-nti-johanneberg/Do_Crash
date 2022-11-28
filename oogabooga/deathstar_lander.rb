@@ -3,15 +3,14 @@ require './landers'
 
 class DSLander < Landers
 
-    def initialize(x, y, window_width, window_height)
+    def initialize(start_x, start_y, window_width, window_height)
         color = Gosu::Color.argb(0xff_ffffff)
-        super(x, y, window_width, window_height, color)
-        @image = Gosu::Image.new("../media/images/death_star.png")
-        @image_scale = 0.3
-        @width = @image.width * @image_scale
-        @height = @image.height * @image_scale
-        @rotation_speed = 2
-        @booster_acc = 0.7
+        image_scale = 0.3
+        image = Gosu::Image.new("../media/images/death_star.png")
+        rotation_speed = 2
+        booster_acc = 0.7
+        super(start_x, start_y, image, window_width, window_height, color, image_scale, rotation_speed, booster_acc)
+
         @assist_margins = 4
     end
 

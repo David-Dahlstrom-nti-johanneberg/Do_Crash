@@ -4,15 +4,22 @@ class Landers
 
     attr_reader :x, :y, :x_vel, :y_vel, :angle, :width, :assist_margins, :height
 
-    def initialize(x, y, window_width, window_height, color)
-        @color = color
+    def initialize(start_x, start_y, window_width, window_height, color, image, image_scale, rotation_speed, booster_acc)
         @window_width = window_width
         @window_height = window_height
+        @color = color
+        @image = image
+        @image_scale = image_scale
+        @width = @image.width * @image_scale
+        @height = @image.height * @image_scale
+
+        @rotation_speed = rotation_speed
+        @booster_acc = booster_acc
         # x & y: right -> positive & down -> positive
         # position: pixels; velocity: pixels per second; angle: degrees;
         # rotation_speed: degrees per second ;acceleration: pixels per second^2
-        @x = x
-        @y = y
+        @x = start_x
+        @y = start_y
         @x_vel = 0          # initial velocity
         @y_vel = 0
         @angle = 0          # right is positive; left is negative
