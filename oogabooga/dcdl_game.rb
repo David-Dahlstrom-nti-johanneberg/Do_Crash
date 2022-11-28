@@ -18,12 +18,11 @@ class Dont_crash_do_land < Gosu::Window
         @y_vel_check = 20
         @collision_points = 20 # how accurate collisions are
         @song = Gosu::Song.new("../media/music/space.mp3")
-        @song.play(false)
-      
-        reset
+        @song.play(true)      
+        reset()
     end
 
-    def reset
+    def reset()
         if rand(1..2) == 1
             @lander = LunarLander.new((self.width/2), (self.height/2), self.width, self.height)
         else
