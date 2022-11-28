@@ -25,7 +25,7 @@ class Dont_crash_do_land < Gosu::Window
     def reset
         @lunar_lander = LunarLander.new((self.width/2), (self.height/2), self.width, self.height)
         @ds_lander = DSLander.new((self.width/2), (self.height/2), self.width, self.height)
-        @player1_hud = Hud.new(self, self.width/2, self.height/2, @window_width, 2)
+        @player1_hud = Hud.new(self, self.width/2, self.height/2, @window_width, 1)
         @player2_hud = Hud.new(self, self.width/2, self.height/2, @window_width, 2)
         @floor = Floor.new(@window_width, @window_height)
     end
@@ -77,17 +77,24 @@ class Dont_crash_do_land < Gosu::Window
     def draw
         @floor.draw
         @lander.draw
-        alt = @floor.y(@lander.x) - @lander.y - (@lander.height/2)
-        @hud.draw(@lander.x_vel, @lander.y_vel, @lander.angle, alt)
-
-        if collision() == true
-            @hud.draw_win
-            @hud.draw_new_game
+        alt1 = @floor.y(@lunar_lander.x) - @lunar_lander.y - (@lunar_lander.height/2)
+        alt2 = @floor.y(@ds_lander.x) - @ds_lander.y - (@ds_lander.height/2)
+        @player1_hud.draw(@lunar_lander.x_vel, @lunar_lander.y_vel, @lunar_lander.angle, alt1)
+        @player2_hud.draw(@ds_lander.x_vel, @ds_lander.y_vel, @ds_lander.angle, alt2)
+        if collision(@lunar_lander) == true
+            @player1_hud.draw_win
+            @player1_hud.draw_new_game
         elsif collision() == false
-            @hud.draw_lose
-            @hud.draw_new_game
+            @player1_hud.draw_lose
+            @player1_hud.draw_new_game
         end
-
+        if collision(@ds_lander) == true
+            @player2_hud.draw_win
+            @player2_hud.draw_new_game
+        elsif collision() == false
+            @player2_hud.draw_lose
+            @player2_hud.draw_new_game
+        end
         # debug
         color = Gosu::Color.argb(0xff_0000ff)
         if @lander.is_a? DSLander
